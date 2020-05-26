@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Main} from './App.styles';
+import {MainRoutes} from './routes/Main.routes';
+import {BrowserRouter} from 'react-router-dom';
 
+/**
+ * Render the base layout with single page aplication router
+ * @return {AppComponent}
+ */
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Main>
+        Trustly teste
+        <MainRoutes></MainRoutes>
+      </Main>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
