@@ -2,6 +2,7 @@ import React from 'react';
 import {Main} from './App.styles';
 import {MainRoutes} from './routes/Main.routes';
 import {BrowserRouter} from 'react-router-dom';
+import {Header} from './components/Header';
 
 /**
  * Render the base layout with single page aplication router
@@ -10,8 +11,8 @@ import {BrowserRouter} from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
+      <Header></Header>
       <Main>
-        Trustly teste
         <MainRoutes></MainRoutes>
       </Main>
     </BrowserRouter>

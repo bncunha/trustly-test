@@ -1,9 +1,25 @@
-html, body {
-  margin: 0;
-  height: 100%;
-  font-family: Roboto;
+html {
+  font-size: 14px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
 }
 
 body {
-  background-color: #fafafa;
+  margin: 0;
+  height: 100%;
+  font-size: 1rem;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFFFFF;
+}
+
+button:hover,
+a:hover {
+  opacity: 0.8;
 }
