@@ -1,14 +1,14 @@
-html {
-  font-size: 14px;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
+html, body {
+  margin: 0;
+  height: 100%;
+  font-size: 16px;
 }
 
 body {
-  margin: 0;
-  height: 100%;
   font-size: 1rem;
+  font-family: Open Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
 }
 
 *, ::after, ::before {
@@ -23,3 +23,5 @@ button:hover,
 a:hover {
   opacity: 0.8;
 }
+
+input, select, textarea, button{font-family:inherit;}

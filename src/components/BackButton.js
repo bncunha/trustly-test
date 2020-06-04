@@ -8,7 +8,7 @@ const BackContent = styled.a`
   border-radius: 15px;
   font-weight: 600;
   font-size: 1.2rem;
-  padding: 0.4rem 1.1rem;
+  padding: 0.2rem 1.1rem;
 `;
 
 const BackArrowIcon = styled(FontAwesomeIcon) `
