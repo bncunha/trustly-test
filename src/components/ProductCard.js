@@ -55,12 +55,12 @@ const SelectRounded = styled.select`
 
 
 export const ProductCard = ({product, onClick}) => {
-  console.log('Product:', product, onClick);
   const createProductForm = (label, values) => {
+    const uniqueID = label + new Date().getTime();
     return (
       <>
-        <Label for={label}> { label } </Label>
-        <SelectRounded>
+        <Label htmlFor={uniqueID}> { label } </Label>
+        <SelectRounded id={uniqueID}>
           {
             values.map((v, index) => (
               <option key={index} value={ v }> { v } </option>
