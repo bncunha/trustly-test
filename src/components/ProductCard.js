@@ -3,6 +3,7 @@ import {Card} from '../styles/Superficies';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {FlexContent as FlexContentDefault} from '../styles/Layout';
+import {Buttons} from '../styles/Buttons';
 
 const theme = {
   principalTexts: `
@@ -53,8 +54,8 @@ const SelectRounded = styled.select`
 `;
 
 
-export const ProductCard = ({product}) => {
-  console.log('Product:', product);
+export const ProductCard = ({product, onClick}) => {
+  console.log('Product:', product, onClick);
   const createProductForm = (label, values) => {
     return (
       <>
@@ -80,6 +81,9 @@ export const ProductCard = ({product}) => {
           { createProductForm('Quantity', ['1', '2']) }
         </FormContent>
         <ProductPrice> { product.price } </ProductPrice>
+        <Buttons.Primary onClick={ onClick }>
+          Add to cart
+        </Buttons.Primary>
       </ProductInfo>
     </Card>
   );
@@ -87,4 +91,5 @@ export const ProductCard = ({product}) => {
 
 ProductCard.propTypes = {
   product: PropTypes.object,
+  onClick: PropTypes.func,
 };
