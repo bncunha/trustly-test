@@ -4,7 +4,7 @@ import {HomePage} from '../pages/HomePage/HomePage';
 import {CheckoutPage} from '../pages/CheckoutPage/CheckoutPage';
 
 const routes = [
-  {path: '/checkout/:id', componente: CheckoutPage},
+  {path: '/checkout', componente: CheckoutPage},
   {path: '/', componente: HomePage},
 ];
 

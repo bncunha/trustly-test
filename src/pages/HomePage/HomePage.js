@@ -23,12 +23,13 @@ export const HomePage = () => {
 
   useEffect(() => {
     ProductsService.getAllProducts().then((result) => {
-      console.log(result); setProducts(result.results);
+      setProducts(result.results);
+      console.log(result);
     });
   }, []);
 
   const addToCart = (product) => {
-    historyPage.push(`/checkout/${product.id}`, {product: product});
+    historyPage.push(`/checkout`, {product: product});
   };
 
   const createItensHome = (itens) => {
