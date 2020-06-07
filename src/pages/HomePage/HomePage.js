@@ -4,6 +4,7 @@ import {FlexContent} from '../../styles/Layout';
 import styled from 'styled-components';
 import {ProductsService} from '../../services/ProductsService';
 import {ProductCard} from '../../components/ProductCard';
+import {useHistory} from 'react-router-dom';
 
 export const ColItemHome = styled.div`
   flex: 0 0 300px;
@@ -18,6 +19,7 @@ export const ColItemHome = styled.div`
 
 export const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const historyPage = useHistory();
 
   useEffect(() => {
     ProductsService.getAllProducts().then((result) => {
@@ -26,7 +28,7 @@ export const HomePage = () => {
   }, []);
 
   const addToCart = (product) => {
-    console.log(product);
+    historyPage.push(`/checkout/${product.id}`, {product: product});
   };
 
   const createItensHome = (itens) => {
