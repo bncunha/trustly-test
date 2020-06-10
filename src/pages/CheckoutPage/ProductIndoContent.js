@@ -16,7 +16,7 @@ export const ProductInfoContent = (props) => {
       <DetailsInfo>
         x{ props.quantity },
         { props.product.color },
-        Size { props.product.size } <br/>
+        Size { props.size } <br/>
         Item #{ props.product.id }
       </DetailsInfo>
     </>
@@ -26,4 +26,5 @@ export const ProductInfoContent = (props) => {
 ProductInfoContent.propTypes = {
   product: PropTypes.object,
   quantity: PropTypes.number,
+  size: PropTypes.number,
 };

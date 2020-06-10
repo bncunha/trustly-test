@@ -28,8 +28,8 @@ export const HomePage = () => {
     });
   }, []);
 
-  const addToCart = (product) => {
-    historyPage.push(`/checkout`, {product: product});
+  const addToCart = (product, quantity, size) => {
+    historyPage.push(`/checkout`, {product, quantity, size});
   };
 
   const createItensHome = (itens) => {
@@ -38,7 +38,7 @@ export const HomePage = () => {
         <ColItemHome key={ index }>
           <ProductCard
             product={ item }
-            onClick={ addToCart.bind(null, item) }>
+            onClick={ addToCart.bind(null) }>
           </ProductCard>
         </ColItemHome>
       );

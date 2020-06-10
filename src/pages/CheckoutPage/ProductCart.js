@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {ProductInfoContent} from './ProductIndoContent';
 import {DeliveryContent} from './DeliveryContent';
+import {DetailsTitle, DetailsInfo} from '../../styles/Tipografia';
+import CurrencyFormat from 'react-currency-format';
 
 const InfoContainer = styled.div`
   background-color: #F7F7F7;
@@ -15,7 +17,7 @@ const InfoContainer = styled.div`
 const ImageWrapper = styled.div`
   position: relative;
   flex: 0 1 5.75rem;
-  height: 6.2rem;
+  height: 7.2rem;
   overflow: hidden;
   border-radius: 10px;
 `;
@@ -39,7 +41,17 @@ const ProductInfoWrapper = styled.div`
 
 `;
 
-const DeliveryWrapper = styled.div`
+const TotalWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+`;
+
+const TotalText = styled.span`
+  font-size: 2.25rem;
+  font-weight: bold;
 `;
 
 export const ProductCart = ({product, quantity, size}) => {
@@ -56,15 +68,29 @@ export const ProductCart = ({product, quantity, size}) => {
         <ProductInfoWrapper>
           <ProductInfoContent
             product={product}
-            quantity={quantity}>
+            quantity={quantity}
+            size={size}>
           </ProductInfoContent>
         </ProductInfoWrapper>
 
-        <DeliveryWrapper>
+        <div>
           <DeliveryContent></DeliveryContent>
-        </DeliveryWrapper>
+        </div>
       </InfoWrapper>
 
+      <TotalWrapper>
+        <div>
+          <DetailsTitle> Total cost </DetailsTitle>
+          <DetailsInfo> Delivery included </DetailsInfo>
+        </div>
+        <div>
+          <TotalText>
+            <CurrencyFormat value={product.price * quantity}
+              displayType={'text'}
+              thousandSeparator={true} prefix={'$'} />
+          </TotalText>
+        </div>
+      </TotalWrapper>
     </InfoContainer>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Card} from '../styles/Superficies';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -55,12 +55,17 @@ const SelectRounded = styled.select`
 
 
 export const ProductCard = ({product, onClick}) => {
-  const createProductForm = (label, values) => {
+  const [qtd, setQuantity] = useState(1);
+  const [size, setSize] = useState(41);
+
+  const createProductForm = (label, values, bindValue, onChangeHandle) => {
     const uniqueID = label + new Date().getTime();
     return (
       <>
         <Label htmlFor={uniqueID}> { label } </Label>
-        <SelectRounded id={uniqueID}>
+        <SelectRounded id={uniqueID}
+          value={bindValue}
+          onChange={(e) => onChangeHandle(Number(e.target.value))}>
           {
             values.map((v, index) => (
               <option key={index} value={ v }> { v } </option>
@@ -77,11 +82,11 @@ export const ProductCard = ({product, onClick}) => {
       <ProductName> { product.description } </ProductName>
       <ProductInfo>
         <FormContent>
-          { createProductForm('Size', ['41', '42']) }
-          { createProductForm('Quantity', ['1', '2']) }
+          { createProductForm('Size', [41, 42], size, setSize) }
+          { createProductForm('Quantity', [1, 2], qtd, setQuantity) }
         </FormContent>
         <ProductPrice> { product.price } </ProductPrice>
-        <Buttons.Primary onClick={ onClick }>
+        <Buttons.Primary onClick={() => onClick(product, qtd, size) }>
           Add to cart
         </Buttons.Primary>
       </ProductInfo>
