@@ -5,14 +5,7 @@ import {ProductInfoContent} from './ProductIndoContent';
 import {DeliveryContent} from './DeliveryContent';
 import {DetailsTitle, DetailsInfo} from '../../styles/Tipografia';
 import CurrencyFormat from 'react-currency-format';
-
-const InfoContainer = styled.div`
-  background-color: #F7F7F7;
-  padding: 1rem;
-  border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
-`;
+import {InfoContainer} from '../../styles/Superficies';
 
 const ImageWrapper = styled.div`
   position: relative;

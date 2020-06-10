@@ -8,6 +8,14 @@ export const Titulo1 = styled.h1`
     font-size: 1.5rem;
 `;
 
+export const Titulo2 = styled.h2`
+  color: #000;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+`;
+
 export const DetailsInfo = styled.p`
   color: #A5A5A5;
   font-size: 0.9rem;
