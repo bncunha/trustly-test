@@ -9,7 +9,7 @@ import onliePayment from '../../assets/online_payment.png';
 import creditCardImg from '../../assets/master_payment.png';
 import applePayment from '../../assets/apple_payment.png';
 import {Buttons} from '../../styles/Buttons';
-import {establishPayWithMyBank} from '../../create_transaction';
+// import {establishPayWithMyBank} from '../../create_transaction';
 import {addEventPayWithMyBank} from '../../add_listener';
 
 const PaymentTitle = styled(Titulo2)`
@@ -48,7 +48,13 @@ export const CheckoutPage = () => {
 
   const finishCheckout = (e) => {
     e.preventDefault();
-    establishPayWithMyBank();
+    if (paymentSelected === 'Online Banking') {
+      // establishPayWithMyBank(() => {
+      history.replace(`/confirmation`, history.location.state);
+      // });
+    } else {
+      alert('Prease, select online banking!');
+    }
     return;
   };
 

@@ -16,6 +16,10 @@ export const Titulo2 = styled.h2`
   font-size: 1rem;
 `;
 
+export const Titulo2Bold = styled(Titulo2)`
+  font-weight: bold;
+`;
+
 export const DetailsInfo = styled.p`
   color: #A5A5A5;
   font-size: 0.9rem;

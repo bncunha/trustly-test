@@ -31,6 +31,8 @@ export const Col = styled.div`
   max-width: ${(props) => {
     if (props.size === 6) {
       return '50%';
+    } else {
+      return '100%';
     }
   }}
 `;
