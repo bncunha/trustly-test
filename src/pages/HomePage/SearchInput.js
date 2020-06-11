@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
+
 
 const SearchContent = styled.div`
   display: flex;
@@ -26,11 +28,18 @@ const SearchField = styled.input`
 `;
 
 
-export const SearchInput = () => {
+export const SearchInput = (props) => {
   return (
     <SearchContent>
       <LupaIcon icon={faSearch}></LupaIcon>
-      <SearchField placeholder="Search for your sneaker"></SearchField>
+      <SearchField
+        onInput={ (e) => props.onInput(e.target.value)}
+        placeholder="Search for your sneaker">
+      </SearchField>
     </SearchContent>
   );
+};
+
+SearchInput.propTypes = {
+  onInput: PropTypes.func,
 };

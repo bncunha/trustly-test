@@ -1,5 +1,5 @@
 import {SearchInput} from './SearchInput';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {FlexContent} from '../../styles/Layout';
 import styled from 'styled-components';
 import {ProductsService} from '../../services/ProductsService';
@@ -20,13 +20,15 @@ export const ColItemHome = styled.div`
 export const HomePage = () => {
   const [products, setProducts] = useState([]);
   const historyPage = useHistory();
+  const allProducts = useRef([]);
+  console.log(allProducts);
 
   useEffect(() => {
     ProductsService.getAllProducts().then((result) => {
       setProducts(result.results);
-      console.log(result);
+      allProducts.current = result.results;
     });
-  }, []);
+  }, [allProducts]);
 
   const addToCart = (product, quantity, size) => {
     historyPage.push(`/checkout`, {product, quantity, size});
@@ -45,9 +47,17 @@ export const HomePage = () => {
     });
   };
 
+  const filterProducts = (value) => {
+    if (value) {
+      setProducts(allProducts.current.filter((prod) => {
+        return prod.description.toUpperCase().indexOf(value.toUpperCase()) >= 0;
+      }));
+    }
+  };
+
   return (
     <div>
-      <SearchInput></SearchInput>
+      <SearchInput onInput={ filterProducts.bind(null) }></SearchInput>
       <FlexContent>
         { createItensHome(products) }
       </FlexContent>
