@@ -9,6 +9,8 @@ import onliePayment from '../../assets/online_payment.png';
 import creditCardImg from '../../assets/master_payment.png';
 import applePayment from '../../assets/apple_payment.png';
 import {Buttons} from '../../styles/Buttons';
+import {establishPayWithMyBank} from '../../create_transaction';
+import {addEventPayWithMyBank} from '../../add_listener';
 
 const PaymentTitle = styled(Titulo2)`
   margin-top: 2rem;
@@ -34,6 +36,7 @@ export const CheckoutPage = () => {
   ];
 
   useEffect(() => {
+    addEventPayWithMyBank();
     if (history.location.state && !history.location.state.product) {
       history.replace('/');
     }
@@ -43,6 +46,12 @@ export const CheckoutPage = () => {
     setPaymentSelected(paymentSelected);
   };
 
+  const finishCheckout = (e) => {
+    e.preventDefault();
+    establishPayWithMyBank();
+    return;
+  };
+
   return (
     <>
       <Titulo1> Checkout </Titulo1>
@@ -50,22 +59,24 @@ export const CheckoutPage = () => {
         quantity={history.location.state.quantity}
         size={history.location.state.size}></ProductCart>
       <PaymentTitle> Payment method </PaymentTitle>
-      <InfoContainer>
-        {
-          payments.map((payment, index) =>
-            <PaymentCard key={index}
-              flags={payment.flags}
-              name={payment.name}
-              selected={paymentSelected}
-              onValueChange={ handleValueChange.bind(null) }
-              save={payment.save}>
-            </PaymentCard>,
-          )
-        }
-      </InfoContainer>
-      <Buttons.Primary style={{marginTop: '1rem'}}>
-        Continue
-      </Buttons.Primary>
+      <form>
+        <InfoContainer>
+          {
+            payments.map((payment, index) =>
+              <PaymentCard key={index}
+                flags={payment.flags}
+                name={payment.name}
+                selected={paymentSelected}
+                onValueChange={ handleValueChange.bind(null) }
+                save={payment.save}>
+              </PaymentCard>,
+            )
+          }
+        </InfoContainer>
+        <Buttons.Primary style={{marginTop: '1rem'}} onClick={ finishCheckout }>
+          Continue
+        </Buttons.Primary>
+      </form>
     </>
   );
 };

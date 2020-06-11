@@ -9,7 +9,6 @@ const ProductName = styled.span`
 `;
 
 export const ProductInfoContent = (props) => {
-  console.log(props);
   return (
     <>
       <ProductName> { props.product.description } </ProductName>

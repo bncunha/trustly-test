@@ -33,7 +33,7 @@ const Input = styled.input`
 
 export const PaymentCard = (props) => {
   return (
-    <form>
+    <>
       <Input
         id={ props.name }
         style={{display: 'none'}}
@@ -58,7 +58,7 @@ export const PaymentCard = (props) => {
           </Row>
         </Card>
       </label>
-    </form>
+    </>
   );
 };
 
