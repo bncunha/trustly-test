@@ -18,6 +18,7 @@ const Avatar = styled.div`
   background-repeat: no-repeat;
   background-position: top center;
   background-image: url(${(props) => props.src});
+  margin-left: auto;
 `;
 
 export const Header = () => {

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import {useHistory} from 'react-router-dom';
 
 const BackContent = styled.a`
   background-color: rgba(0, 0, 0, 0.05);
@@ -16,10 +17,25 @@ const BackArrowIcon = styled(FontAwesomeIcon) `
 `;
 
 export const BackButton = () => {
-  return (
-    <BackContent>
-      <BackArrowIcon icon={faArrowLeft} />
-      <span> Back </span>
-    </BackContent>
-  );
+  const history = useHistory();
+  const [isRoot, setIsRoot] = useState(history.location.pathname === '/');
+
+  history.listen((r) => {
+    setIsRoot(r.pathname === '/');
+  });
+
+  const showBackButton = () => {
+    return isRoot ? <></> : backButton();
+  };
+
+  const backButton = () => {
+    return (
+      <BackContent onClick={() => history.goBack()}>
+        <BackArrowIcon icon={faArrowLeft} />
+        <span> Back </span>
+      </BackContent>
+    );
+  };
+
+  return showBackButton();
 };

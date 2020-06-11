@@ -21,14 +21,13 @@ export const HomePage = () => {
   const [products, setProducts] = useState([]);
   const historyPage = useHistory();
   const allProducts = useRef([]);
-  console.log(allProducts);
 
   useEffect(() => {
     ProductsService.getAllProducts().then((result) => {
       setProducts(result.results);
       allProducts.current = result.results;
     });
-  }, [allProducts]);
+  }, [historyPage]);
 
   const addToCart = (product, quantity, size) => {
     historyPage.push(`/checkout`, {product, quantity, size});

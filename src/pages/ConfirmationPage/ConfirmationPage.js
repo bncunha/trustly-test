@@ -8,7 +8,6 @@ import {Buttons} from '../../styles/Buttons';
 
 export const ConfirmationPage = () => {
   const history = useHistory();
-  console.log(history.location.state);
   const state = history.location.state;
   useEffect(() => {
     if (!history.location.state ||
