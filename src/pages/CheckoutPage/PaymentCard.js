@@ -33,11 +33,14 @@ const Input = styled.input`
 
 export const PaymentCard = (props) => {
   return (
-    <>
+    <form>
       <Input
         id={ props.name }
         style={{display: 'none'}}
         name="selectPayment"
+        value={props.name}
+        checked={props.selected === props.name}
+        onChange={() => props.onValueChange(props.name)}
         type="radio"/>
       <label style={{width: '100%'}} htmlFor={ props.name }>
         <Card>
@@ -55,7 +58,7 @@ export const PaymentCard = (props) => {
           </Row>
         </Card>
       </label>
-    </>
+    </form>
   );
 };
 
@@ -63,4 +66,6 @@ PaymentCard.propTypes = {
   name: PropTypes.string,
   flags: PropTypes.string,
   save: PropTypes.number,
+  selected: PropTypes.string,
+  onValueChange: PropTypes.func,
 };

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Titulo1, Titulo2} from '../../styles/Tipografia';
 import {ProductCart} from './ProductCart';
@@ -15,6 +15,7 @@ const PaymentTitle = styled(Titulo2)`
 `;
 
 export const CheckoutPage = () => {
+  const [paymentSelected, setPaymentSelected] = useState('Online Banking');
   const history = useHistory();
   const payments = [
     {
@@ -38,6 +39,10 @@ export const CheckoutPage = () => {
     }
   }, [history]);
 
+  const handleValueChange = (paymentSelected) => {
+    setPaymentSelected(paymentSelected);
+  };
+
   return (
     <>
       <Titulo1> Checkout </Titulo1>
@@ -51,6 +56,8 @@ export const CheckoutPage = () => {
             <PaymentCard key={index}
               flags={payment.flags}
               name={payment.name}
+              selected={paymentSelected}
+              onValueChange={ handleValueChange.bind(null) }
               save={payment.save}>
             </PaymentCard>,
           )
