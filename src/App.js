@@ -3,6 +3,7 @@ import {Main} from './App.styles';
 import {MainRoutes} from './routes/Main.routes';
 import {BrowserRouter} from 'react-router-dom';
 import {Header} from './components/Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * Render the base layout with single page aplication router

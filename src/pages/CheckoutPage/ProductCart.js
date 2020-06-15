@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import {ProductInfoContent} from './ProductIndoContent';
 import {DeliveryContent} from './DeliveryContent';
 import {Titulo2Bold} from '../../styles/Tipografia';
-import {InfoContainer} from '../../styles/Superficies';
 import {TotalCost} from './TotalCost';
+import {BREAKPOINTS} from '../../styles/Variables';
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -27,11 +27,25 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    margin: 0;
+  }
 `;
 
 const ProductInfoWrapper = styled.div`
   margin-bottom: 1rem;
+`;
 
+const CartTotal = styled.span`
+  display: none;
+  font-size: 1.2rem;
+  font-family: Open Sans;
+  margin-bottom: 1rem;
+
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    display: block;
+  }
 `;
 
 export const ProductCart = ({
@@ -43,9 +57,9 @@ export const ProductCart = ({
   showTotal = true,
   squareImage}) => {
   return (
-    <InfoContainer>
+    <>
       { title && <Titulo2Bold style={{width: '100%'}}> {title} </Titulo2Bold>}
-      <ImageWrapper squareImage={squareImage}>
+      <ImageWrapper squareImage={squareImage} className="d-block d-lg-none">
         <ProductImage
           src={ product.thumbnailURL }
           alt={product.description + ' Image'}/>
@@ -53,6 +67,7 @@ export const ProductCart = ({
 
       <InfoWrapper>
         <ProductInfoWrapper>
+          <CartTotal> Cart total</CartTotal>
           <ProductInfoContent
             product={product}
             quantity={quantity}
@@ -62,7 +77,7 @@ export const ProductCart = ({
 
         {
           showDelivery &&
-          <div>
+          <div style={{marginRight: '1rem'}}>
             <DeliveryContent></DeliveryContent>
           </div>
         }
@@ -72,7 +87,7 @@ export const ProductCart = ({
       {
         showTotal && <TotalCost total={product.price * quantity}></TotalCost>
       }
-    </InfoContainer>
+    </>
   );
 };
 

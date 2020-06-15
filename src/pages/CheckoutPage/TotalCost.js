@@ -2,6 +2,7 @@ import React from 'react';
 import {DetailsTitle, DetailsInfo} from '../../styles/Tipografia';
 import CurrencyFormat from 'react-currency-format';
 import styled from 'styled-components';
+import {BREAKPOINTS} from '../../styles/Variables';
 
 const TotalWrapper = styled.div`
   display: flex;
@@ -9,11 +10,16 @@ const TotalWrapper = styled.div`
   align-items: center;
   width: 100%;
   margin-top: 1rem;
+
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    justify-content: flex-end;
+  }
 `;
 
 const TotalText = styled.span`
   font-size: 2.25rem;
   font-weight: bold;
+  margin-left: 1rem;
 `;
 
 export const TotalCost = (props) => {

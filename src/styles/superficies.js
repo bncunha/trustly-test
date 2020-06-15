@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {BREAKPOINTS} from './Variables';
 
 export const Card = styled.div`
     background-color: #fff;
@@ -28,11 +29,25 @@ export const Col = styled.div`
       return 'display: flex; flex-wrap: wrap; align-items: center;';
     }
   }}
-  max-width: ${(props) => {
-    if (props.size === 6) {
-      return '50%';
-    } else {
-      return '100%';
+  max-width: ${(props) => getMaxWidth(props.size)};
+  
+  ${
+  //  media query
+  (props) => {
+    if (props.lg) { debugger;
+      return `
+        @media(min-width: ${BREAKPOINTS.lg}) {
+          max-width: ${getMaxWidth(props.lg)}
+        }
+      `;
     }
   }}
 `;
+
+const getMaxWidth = (size) => {
+  if (size === 6) {
+    return '50%';
+  } else {
+    return '100%';
+  }
+};

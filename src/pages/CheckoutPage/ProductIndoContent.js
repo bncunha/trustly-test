@@ -2,10 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {DetailsInfo} from '../../styles/Tipografia';
+import {BREAKPOINTS} from '../../styles/Variables';
 
 const ProductName = styled.span`
   color: #000;
   font-size: 1.2rem;
+
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    font-size: 1rem;
+  }
 `;
 
 export const ProductInfoContent = (props) => {

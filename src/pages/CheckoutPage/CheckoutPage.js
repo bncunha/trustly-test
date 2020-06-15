@@ -11,9 +11,51 @@ import applePayment from '../../assets/apple_payment.png';
 import {Buttons} from '../../styles/Buttons';
 // import {establishPayWithMyBank} from '../../create_transaction';
 import {addEventPayWithMyBank} from '../../add_listener';
+import {BREAKPOINTS} from '../../styles/Variables';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const PaymentTitle = styled(Titulo2)`
   margin-top: 2rem;
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+`;
+
+const ProductImage = styled.img`
+  max-width: 100%;
+  border-radius: 2rem;
+`;
+
+const MobileTitle = styled(Titulo1)`
+  display: block;
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    display: none;
+  }
+`;
+
+const InfoContainerDeskNone = styled(InfoContainer)`
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    padding: 0;
+  }
+`;
+
+const InfoContainerMobileNone = styled(InfoContainer)`
+  @media(max-width: ${BREAKPOINTS.lg}) {
+    background: none;
+    padding: 0;
+  }
+`;
+
+const ButtonContinue = styled(Buttons.Primary)`
+  margin-top: 1rem;
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    margin-top: 0rem;
+    max-width: 20rem;
+    margin-left: auto;
+    display: block;
+  }
 `;
 
 export const CheckoutPage = () => {
@@ -37,6 +79,7 @@ export const CheckoutPage = () => {
 
   useEffect(() => {
     addEventPayWithMyBank();
+    console.log(history.location.state);
     if (history.location.state && !history.location.state.product) {
       history.replace('/');
     }
@@ -60,29 +103,50 @@ export const CheckoutPage = () => {
 
   return (
     <>
-      <Titulo1> Checkout </Titulo1>
-      <ProductCart product={ history.location.state.product }
-        quantity={history.location.state.quantity}
-        size={history.location.state.size}></ProductCart>
-      <PaymentTitle> Payment method </PaymentTitle>
-      <form>
-        <InfoContainer>
-          {
-            payments.map((payment, index) =>
-              <PaymentCard key={index}
-                flags={payment.flags}
-                name={payment.name}
-                selected={paymentSelected}
-                onValueChange={ handleValueChange.bind(null) }
-                save={payment.save}>
-              </PaymentCard>,
-            )
-          }
-        </InfoContainer>
-        <Buttons.Primary style={{marginTop: '1rem'}} onClick={ finishCheckout }>
-          Continue
-        </Buttons.Primary>
-      </form>
+      <Row>
+        <Col lg={5} className="d-none d-lg-block">
+          <ProductImage
+            alt={ history.location.state.product.description }
+            src={ history.location.state.product.maxresURL }/>
+        </Col>
+
+        <Col lg={7}>
+          <MobileTitle> Checkout </MobileTitle>
+          <InfoContainerMobileNone>
+            <InfoContainer>
+              <ProductCart product={ history.location.state.product }
+                quantity={history.location.state.quantity}
+                size={history.location.state.size}></ProductCart>
+            </InfoContainer>
+            <form>
+              <PaymentTitle>
+                {
+                  window.innerWidth >= 992 ?
+                  'Select your payment method' :
+                  'Payment method'
+                }
+              </PaymentTitle>
+              <InfoContainerDeskNone>
+                {
+                  payments.map((payment, index) =>
+                    <PaymentCard key={index}
+                      flags={payment.flags}
+                      name={payment.name}
+                      selected={paymentSelected}
+                      onValueChange={ handleValueChange.bind(null) }
+                      save={payment.save}>
+                    </PaymentCard>,
+                  )
+                }
+              </InfoContainerDeskNone>
+              <ButtonContinue
+                onClick={ finishCheckout }>
+                Continue
+              </ButtonContinue>
+            </form>
+          </InfoContainerMobileNone>
+        </Col>
+      </Row>
     </>
   );
 };
