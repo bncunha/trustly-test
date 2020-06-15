@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 const SearchContent = styled.div`
   display: flex;
+  position: relative;
   border-bottom: 1px solid #BDBDBD;
   align-items: center;
   justify-content: center;
@@ -17,6 +18,8 @@ const LupaIcon = styled(FontAwesomeIcon) `
   color: #787878;
   font-size: 1.2rem;
   margin-right: 0.8rem;
+  position: absolute;
+  left: 2.6rem;
 `;
 
 const SearchField = styled.input`
