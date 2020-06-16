@@ -3,6 +3,7 @@ import {DetailsTitle, DetailsInfo} from '../../styles/Tipografia';
 import CurrencyFormat from 'react-currency-format';
 import styled from 'styled-components';
 import {BREAKPOINTS} from '../../styles/Variables';
+import PropTypes from 'prop-types';
 
 const TotalWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const TotalWrapper = styled.div`
   margin-top: 1rem;
 
   @media(min-width: ${BREAKPOINTS.lg}) {
-    justify-content: flex-end;
+    ${(props) => props.alignLeft ? 'justify-content: flex-end' : '' };
   }
 `;
 
@@ -23,8 +24,21 @@ const TotalText = styled.span`
 `;
 
 export const TotalCost = (props) => {
+  const getHideClass = () => {
+    let className = '';
+    if (props.hideDesktop) {
+      className += ' d-flex d-lg-none';
+    } else if (props.hideMobile) {
+      className += ' d-none d-lg-flex';
+    }
+    return className;
+  };
+
   return (
-    <TotalWrapper>
+    <TotalWrapper
+      alignLeft={props.alignLeft}
+      className={getHideClass()}
+    >
       <div>
         <DetailsTitle> Total cost </DetailsTitle>
         <DetailsInfo> Delivery included </DetailsInfo>
@@ -42,5 +56,8 @@ export const TotalCost = (props) => {
 };
 
 TotalCost.propTypes = {
-  total: Number,
+  total: PropTypes.number,
+  alignLeft: PropTypes.bool,
+  hideDesktop: PropTypes.bool,
+  hideMobile: PropTypes.bool,
 };

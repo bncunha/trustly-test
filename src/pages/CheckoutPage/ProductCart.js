@@ -55,6 +55,7 @@ export const ProductCart = ({
   title,
   showDelivery = true,
   showTotal = true,
+  showCartTotalTitle = true,
   squareImage}) => {
   return (
     <>
@@ -67,7 +68,7 @@ export const ProductCart = ({
 
       <InfoWrapper>
         <ProductInfoWrapper>
-          <CartTotal> Cart total</CartTotal>
+          { showCartTotalTitle && <CartTotal> Cart total</CartTotal> }
           <ProductInfoContent
             product={product}
             quantity={quantity}
@@ -99,5 +100,6 @@ ProductCart.propTypes = {
   showDelivery: PropTypes.bool,
   showTotal: PropTypes.bool,
   squareImage: PropTypes.bool,
+  showCartTotalTitle: PropTypes.bool,
 };
 

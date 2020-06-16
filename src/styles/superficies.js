@@ -16,6 +16,19 @@ export const InfoContainer = styled.div`
     flex-wrap: wrap;
 `;
 
+export const InfoContainerDeskNone = styled(InfoContainer)`
+  @media(min-width: ${BREAKPOINTS.lg}) {
+    padding: 0;
+  }
+`;
+
+export const InfoContainerMobileNone = styled(InfoContainer)`
+  @media(max-width: ${BREAKPOINTS.lg}) {
+    background: none;
+    padding: 0;
+  }
+`;
+
 export const Row = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -34,7 +47,7 @@ export const Col = styled.div`
   ${
   //  media query
   (props) => {
-    if (props.lg) { debugger;
+    if (props.lg) {
       return `
         @media(min-width: ${BREAKPOINTS.lg}) {
           max-width: ${getMaxWidth(props.lg)}

@@ -3,7 +3,11 @@ import {useHistory} from 'react-router-dom';
 import {Titulo1, Titulo2} from '../../styles/Tipografia';
 import {ProductCart} from './ProductCart';
 import styled from 'styled-components';
-import {InfoContainer} from '../../styles/Superficies';
+import {
+  InfoContainer,
+  InfoContainerMobileNone,
+  InfoContainerDeskNone,
+} from '../../styles/Superficies';
 import {PaymentCard} from './PaymentCard';
 import onliePayment from '../../assets/online_payment.png';
 import creditCardImg from '../../assets/master_payment.png';
@@ -32,19 +36,6 @@ const MobileTitle = styled(Titulo1)`
   display: block;
   @media(min-width: ${BREAKPOINTS.lg}) {
     display: none;
-  }
-`;
-
-const InfoContainerDeskNone = styled(InfoContainer)`
-  @media(min-width: ${BREAKPOINTS.lg}) {
-    padding: 0;
-  }
-`;
-
-const InfoContainerMobileNone = styled(InfoContainer)`
-  @media(max-width: ${BREAKPOINTS.lg}) {
-    background: none;
-    padding: 0;
   }
 `;
 
