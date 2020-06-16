@@ -34,6 +34,7 @@ const ProductImage = styled.img`
 
 const MobileTitle = styled(Titulo1)`
   display: block;
+  margin-bottom: 2rem;
   @media(min-width: ${BREAKPOINTS.lg}) {
     display: none;
   }

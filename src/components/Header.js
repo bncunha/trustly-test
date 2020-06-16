@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {BackButton} from './BackButton';
 import avatar from '../assets/avatar.png';
 import {BREAKPOINTS} from '../styles/Variables';
 import {Titulo1} from '../styles/Tipografia';
+import {useHistory} from 'react-router-dom';
+import {routes} from '../routes/Main.routes';
 
 const HeaderContent = styled.header`
   display: flex;
@@ -49,12 +51,30 @@ const Pagetitle = styled(Titulo1)`
 `;
 
 export const Header = () => {
+  const getTitlePage = (path) => {
+    const finded = routes.find((r) =>
+      path.length === 1 ?
+      r.path === path :
+      r.path.indexOf(path) >= 0,
+    );
+    return finded ? finded.data.title : null;
+  };
+
+  const history = useHistory();
+  const [titlePage, setTitlePage] =
+    useState(getTitlePage(history.location.pathname));
+
+
+  history.listen((r) => {
+    setTitlePage(getTitlePage(r.pathname));
+  });
+
   return (
     <HeaderContent>
       <ButtonWrapper>
         <BackButton></BackButton>
       </ButtonWrapper>
-      <Pagetitle> Sneakers </Pagetitle>
+      <Pagetitle> { titlePage } </Pagetitle>
       <Avatar alt="Avatar" src={avatar} />
     </HeaderContent>
   );

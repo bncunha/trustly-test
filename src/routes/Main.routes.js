@@ -4,10 +4,14 @@ import {HomePage} from '../pages/HomePage/HomePage';
 import {CheckoutPage} from '../pages/CheckoutPage/CheckoutPage';
 import {ConfirmationPage} from '../pages/ConfirmationPage/ConfirmationPage';
 
-const routes = [
-  {path: '/confirmation', componente: ConfirmationPage},
-  {path: '/checkout', componente: CheckoutPage},
-  {path: '/', componente: HomePage},
+export const routes = [
+  {
+    path: '/confirmation',
+    componente: ConfirmationPage,
+    data: {title: 'Review and Confirmation'},
+  },
+  {path: '/checkout', componente: CheckoutPage, data: {title: 'Checkout'}},
+  {path: '/', componente: HomePage, data: {title: 'Sneakers'}},
 ];
 
 export const MainRoutes = () => {

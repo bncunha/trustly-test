@@ -35,7 +35,7 @@ export const ConfirmationPage = () => {
           src={ history.location.state.product.maxresURL }/>
       </Col>
       <Col lg={6}>
-        <Titulo1 className="d-block d-lg-none">
+        <Titulo1 className="d-block d-lg-none mb-4">
           Review and confirmation
         </Titulo1>
         <InfoContainerMobileNone>
