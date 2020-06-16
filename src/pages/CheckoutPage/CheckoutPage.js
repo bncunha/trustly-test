@@ -13,7 +13,7 @@ import onliePayment from '../../assets/online_payment.png';
 import creditCardImg from '../../assets/master_payment.png';
 import applePayment from '../../assets/apple_payment.png';
 import {Buttons} from '../../styles/Buttons';
-// import {establishPayWithMyBank} from '../../create_transaction';
+import {establishPayWithMyBank} from '../../create_transaction';
 import {addEventPayWithMyBank} from '../../add_listener';
 import {BREAKPOINTS} from '../../styles/Variables';
 import Row from 'react-bootstrap/Row';
@@ -69,9 +69,13 @@ export const CheckoutPage = () => {
     },
   ];
 
+  addEventPayWithMyBank(() => {
+    history.replace(`/confirmation`, history.location.state);
+  }, (error) => {
+    alert('Aconteceu algum problema... Tente novamente');
+  });
+
   useEffect(() => {
-    addEventPayWithMyBank();
-    console.log(history.location.state);
     if (history.location.state && !history.location.state.product) {
       history.replace('/');
     }
@@ -84,9 +88,7 @@ export const CheckoutPage = () => {
   const finishCheckout = (e) => {
     e.preventDefault();
     if (paymentSelected === 'Online Banking') {
-      // establishPayWithMyBank(() => {
-      history.replace(`/confirmation`, history.location.state);
-      // });
+      establishPayWithMyBank();
     } else {
       alert('Prease, select online banking!');
     }
