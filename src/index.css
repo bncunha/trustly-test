@@ -1,0 +1,27 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  font-size: 1rem;
+  font-family: Open Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFFFFF;
+}
+
+button:hover,
+a:hover {
+  opacity: 0.8;
+}
+
+input, select, textarea, button{font-family:inherit;}
