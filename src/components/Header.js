@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {BackButton} from './BackButton';
 import avatar from '../assets/avatar.png';
-import {BREAKPOINTS} from '../styles/Variables';
-import {Titulo1} from '../styles/Tipografia';
+import {BREAKPOINTS} from './../styles/Variables';
+import {Titulo1} from './../styles/Tipografia';
 import {useHistory} from 'react-router-dom';
 import {routes} from '../routes/Main.routes';
 
